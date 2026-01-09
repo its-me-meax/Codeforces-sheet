@@ -1,29 +1,33 @@
-#include <bits/stdc++.h>
-using namespace std;
+class Solution {
+public:
+    void solve() {
+        int t;
+        cin >> t;
+        while (t--) {
+            int n;
+            cin >> n;
+            string s;
+            cin >> s;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+            int ans = 0;
+            for (int i = 0; i < n; ) {
+                if (s[i] == '#') {
+                    i++;
+                    continue;
+                }
 
-    int t;
-    cin >> t;
-    while (t--) {
-        int n;
-        cin >> n;
-        string s;
-        cin >> s;
+                int j = i;
+                while (j < n && s[j] == '.') j++;
 
-        int ans =0;
-        for (int i= 0; i <n; ) {
-            if (s[i]=='.') {
-                ans++;
-                i+= 3;   ///// COVERING THIS TWO AND NEXT POSITION
-            } else {
-                i++;
+                int len = j - i;
+                if (len == 1) ans += 1;
+                else if (len == 2) ans += 2;
+                else ans += 2;
+
+                i = j;
             }
+
+            cout << ans << '\n';
         }
-        cout << ans<<'\n';
     }
-    return 0;
-}
-// BIG O(n)
+};
